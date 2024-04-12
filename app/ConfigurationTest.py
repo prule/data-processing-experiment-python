@@ -1,21 +1,18 @@
 import unittest
-import pyjson5
 
-from config import Sources
-
-
-def load_json(path):
-    with open(path, "r") as file:
-        return pyjson5.load(file)
+from app.core.JsonRepository import JsonRepository
+from app.core.Configuration import Sources
 
 
 class TestSources(unittest.TestCase):
+    json_repo = JsonRepository()
+
     def test_deserialize(self):
         """
         Description goes here
         """
 
-        json_obj = pyjson5.loads("""
+        json_obj = self.json_repo.load_str("""
             {
               id: "a",
               name: "b",
@@ -27,8 +24,6 @@ class TestSources(unittest.TestCase):
         """)
         result = Sources.from_dict(json_obj)
 
-        print(result)
-
         self.assertEqual(result.key, 'a')
         self.assertEqual(result.name, 'b')
         self.assertEqual(result.description, 'c')
@@ -39,7 +34,7 @@ class TestSources(unittest.TestCase):
         Description goes here
         """
 
-        json_obj = pyjson5.loads("""
+        json_obj = self.json_repo.load_str("""
             {
               id: "a",
               name: "b",
@@ -65,8 +60,6 @@ class TestSources(unittest.TestCase):
         """)
         result = Sources.from_dict(json_obj)
 
-        print(result)
-
         self.assertEqual('a', result.key)
         self.assertEqual('b', result.name)
         self.assertEqual('c', result.description)
@@ -87,7 +80,7 @@ class TestSources(unittest.TestCase):
         Description goes here
         """
 
-        json_obj = load_json('../config/sample1/sample1.tables.json5')
+        json_obj = TestSources.json_repo.load_file('../config/sample1/sample1.tables.json5')
         result = Sources.from_dict(json_obj)
 
         print(result)
