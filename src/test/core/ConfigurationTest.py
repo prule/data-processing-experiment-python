@@ -1,7 +1,7 @@
 import unittest
 
-from app.core.JsonRepository import JsonRepository
-from app.core.Configuration import Sources
+from src.main.core.JsonRepository import JsonRepository
+from src.main.core.Configuration import Sources
 
 
 class TestSources(unittest.TestCase):
@@ -80,7 +80,7 @@ class TestSources(unittest.TestCase):
         Description goes here
         """
 
-        json_obj = TestSources.json_repo.load_file('../config/sample1/sample1.tables.json5')
+        json_obj = TestSources.json_repo.load_file('../../../config/sample1/sample1.tables.json5')
         result = Sources.from_dict(json_obj)
 
         print(result)

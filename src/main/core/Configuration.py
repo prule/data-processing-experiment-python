@@ -1,6 +1,7 @@
 from typing import List
 from dataclasses import dataclass
-from app.core.JsonRepository import JsonRepository
+
+
 # from ..core import JsonRepository
 
 @dataclass
