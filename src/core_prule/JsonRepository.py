@@ -1,5 +1,7 @@
 import requests
 import pyjson5
+import pyjson
+
 
 class JsonRepository:
 
@@ -14,3 +16,6 @@ class JsonRepository:
 
     def load_str(self, content: str):
         return pyjson5.loads(content)
+
+    def print(self, obj):
+        return json.dumps(obj, indent=2)

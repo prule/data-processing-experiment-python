@@ -39,6 +39,11 @@ class TableDefinition(object):
     columns: List[ColumnDefinition]
     trim: bool
 
+    def delimiter(self):
+        if not self.delimiter:
+            return ","
+        return self.delimiter
+
     @classmethod
     def from_dict(cls, data: dict):
         return cls(

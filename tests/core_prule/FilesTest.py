@@ -4,7 +4,10 @@ from src.core_prule.Files import Files
 
 
 class FilesTest(unittest.TestCase):
-    files = Files('https://raw.githubusercontent.com/prule/data-processing-experiment-python/main/src/main/', './tmp/')
+    files = Files(
+        'https://raw.githubusercontent.com/prule/data-processing-experiment-python/main/src/',
+        './tmp/'
+    )
 
     def test_copy(self):
         """

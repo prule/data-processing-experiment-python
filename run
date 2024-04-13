@@ -15,7 +15,7 @@ case "$1" in
     echo ""
     echo "Running tests"
     echo ""
-    python -m unittest discover -s ./tests -p "*Test.py"
+    python -m unittest discover ./tests -p "*Test.py"
     ;;
 
   *)

@@ -80,10 +80,10 @@ class TestSources(unittest.TestCase):
         Description goes here
         """
 
-        json_obj = TestSources.json_repo.load_file('../../../config/sample1/sample1.tables.json5')
+        json_obj = TestSources.json_repo.load_file('./config/sample1/sample1.tables.json5')
         result = Sources.from_dict(json_obj)
 
-        print(result)
+        self.assertIsNotNone(result)
 
 
 if __name__ == '__main__':
