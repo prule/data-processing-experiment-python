@@ -39,7 +39,7 @@ class TableDefinition(object):
     columns: List[ColumnDefinition]
     trim: bool
 
-    def delimiter(self):
+    def delimiter_or_default(self):
         if not self.delimiter:
             return ","
         return self.delimiter
