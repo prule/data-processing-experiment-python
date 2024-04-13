@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+me=$(basename "$0")
+
+case "$1" in
+
+  'build')
+    echo ""
+    echo "Building"
+    echo ""
+    python3 -m build
+    ;;
+
+  'test')
+    echo ""
+    echo "Running tests"
+    echo ""
+    python -m unittest discover -s ./tests -p "*Test.py"
+    ;;
+
+  *)
+    echo -e ""
+    echo "Usage:"
+    echo ""
+    echo "$(tput setaf 5)    $me$(tput sgr0) $(tput setaf 3)<command>$(tput sgr0)"
+    echo ""
+    echo "Commands:"
+    echo ""
+
+    echo "$(tput setaf 3)    build                                      $(tput sgr0)      Build package"
+    echo "$(tput setaf 3)    test                                       $(tput sgr0)      Run tests"
+
+esac

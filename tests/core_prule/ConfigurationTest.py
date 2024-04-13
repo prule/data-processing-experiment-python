@@ -1,7 +1,7 @@
 import unittest
 
-from src.main.core.JsonRepository import JsonRepository
-from src.main.core.Configuration import Sources
+from src.core_prule.JsonRepository import JsonRepository
+from src.core_prule.Configuration import Sources
 
 
 class TestSources(unittest.TestCase):

@@ -2,8 +2,6 @@ from typing import List
 from dataclasses import dataclass
 
 
-# from ..core import JsonRepository
-
 @dataclass
 class ColumnDefinition(object):
     """description goes here"""
