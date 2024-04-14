@@ -70,6 +70,7 @@ class TestSources(unittest.TestCase):
         self.assertEqual('f', source_definition.description)
         self.assertEqual('g', source_definition.path)
         self.assertEqual('h', source_definition.type)
+        self.assertEqual(',', source_definition.table.delimiter_or_default())
 
         # data = [1, 2, 3]
         # result = sum(data)

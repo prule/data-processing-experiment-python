@@ -18,6 +18,18 @@ case "$1" in
     python -m unittest discover ./tests -p "*Test.py"
     ;;
 
+  'deps')
+    echo ""
+    echo "Installing dependencies"
+    echo ""
+    pip install --upgrade pip
+    pip install pyjson5
+    pip install pyspark
+    pip install requests
+
+    ;;
+
+
   *)
     echo -e ""
     echo "Usage:"

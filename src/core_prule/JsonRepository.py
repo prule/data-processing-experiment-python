@@ -1,6 +1,6 @@
 import requests
 import pyjson5
-import pyjson
+import json
 
 
 class JsonRepository:
