@@ -5,7 +5,7 @@ import shutil
 import logging
 
 from pyspark.sql import SparkSession, DataFrame, Column
-from pyspark.sql.functions import trim, col
+from pyspark.sql.functions import trim, col, to_date, coalesce
 
 from src.core_prule.Configuration import SourceDefinition, ColumnDefinition
 
@@ -59,43 +59,26 @@ class DataFrameBuilder:
 
         return c.alias(column.alias)
 
-    # /**
-    #  * Builds a typed dataset using the definition in the table configuration
-    #  *
-    #  * - Only the columns specified and with their associated types (integer, date, boolean etc)
-    #  * - Those values that couldn't be converted to a type will be null.
-    #  *
-    #  * Also renames the column according to the specified alias if provided.
-    #  */
-    # fun typed(): Dataset<Row> {
-    #     // build a list of Columns to select with the casting or transforms to achieve the required type
-    #     val typedColumns: List<Column> =
-    #         sourceDefinition.table.columns.map { column ->
-    #             // convert to type
-    #             (column.type as Typer).process(column.alias)
-    #         }
-    #     // call var args function https://stackoverflow.com/a/65520425
-    #     return selected().select(*typedColumns.map { it }.toTypedArray())
-    # }
-
     def typed(self) -> DataFrame:
         selected = self.selected()
         columns = list(map(lambda x: self.to_typed_column(x, selected), self.source.table.columns))
         return selected.select(columns)
 
     def to_typed_column(self, column: ColumnDefinition, raw: DataFrame) -> Column:
-        c: Column = None
         match column.type.type:
             case "com.example.dataprocessingexperiment.spark.data.types.IntegerType":
                 c = col(column.alias).cast("integer")
             case "com.example.dataprocessingexperiment.spark.data.types.DecimalType":
                 c = col(column.alias).cast(f"decimal({column.type.precision},{column.type.scale})")
-                print(f"transform to decimal({column.type.precision},{column.type.scale})")
             case "com.example.dataprocessingexperiment.spark.data.types.DateType":
-                c = col(column.alias).cast("date")
+                d = trim(col(column.alias))
+                if column.type.formats:
+                    c = coalesce(*list(map(lambda x: to_date(d, x), column.type.formats)))
+                else:
+                    c = col(column.alias).cast("date")
             case "com.example.dataprocessingexperiment.spark.data.types.BooleanType":
                 c = col(column.alias).cast("boolean")
             case _:
                 c = col(column.alias)
 
-        return c
+        return c.alias(column.alias)

@@ -53,13 +53,16 @@ class App:
                 typed = builder.typed()
                 self.display("typed", typed)
 
+                # Add to context
+                context.put(source.key, typed)
+
     def display(self, name: str, df: DataFrame):
         print()
         print(name)
         print()
 
         df.printSchema()
-        df.sort(df.columns[0]).show(10)
+        df.sort(df.columns[0]).show(100, 10)
         print(f"Row count = {df.count()}")
 
 

@@ -30,7 +30,6 @@ class ColumnDefinition(object):
     alias: str
     description: str
     type: ColumnType
-    formats: List[str]
     required: bool
     trim: bool
 
@@ -41,7 +40,6 @@ class ColumnDefinition(object):
             data.get('alias'),
             data.get('description'),
             ColumnType.from_dict(data.get('type')),
-            data.get('formats'),
             data.get('required'),
             data.get('trim')
         )
