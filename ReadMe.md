@@ -78,8 +78,7 @@ with (SparkSession.builder.appName("Data Processing Experiment").master("local")
 
 ## Summary 
 
-We've seen how the python code can be developed in an IDE, and then loaded into the notebook. This would allow your team to leverage simple externalised configuration to drive the data processing as was done in the Kotlin project. The intention here would be to be able to provide consistency across this work as well as speeding up 
-the development process.
+This episode has been a bit rushed, but we've seen how the python code can be developed in an IDE, and then loaded into the notebook. This would allow a team to leverage simple externalised configuration and functionality to drive the data processing as was done in the Kotlin project. The intention here would be to be able to provide consistency across this work as well as speeding up the process.
 
 ## Other interesting points
 
