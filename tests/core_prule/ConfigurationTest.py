@@ -9,7 +9,7 @@ class TestSources(unittest.TestCase):
 
     def test_deserialize(self):
         """
-        Description goes here
+        Deserialize a JSON object into a Sources object
         """
 
         json_obj = self.json_repo.load_str("""
@@ -31,7 +31,7 @@ class TestSources(unittest.TestCase):
 
     def test_deserialize_nested(self):
         """
-        Description goes here
+        Deserialize to table configuration
         """
 
         json_obj = self.json_repo.load_str("""
@@ -72,13 +72,9 @@ class TestSources(unittest.TestCase):
         self.assertEqual('h', source_definition.type)
         self.assertEqual(',', source_definition.table.delimiter_or_default())
 
-        # data = [1, 2, 3]
-        # result = sum(data)
-        # self.assertEqual(result, 6)
-
     def test_deserialize_config_file(self):
         """
-        Description goes here
+        Deserialize a sample config file
         """
 
         json_obj = TestSources.json_repo.load_file('./config/sample1/sample1.tables.json5')
